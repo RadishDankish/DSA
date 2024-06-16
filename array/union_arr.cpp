@@ -26,4 +26,48 @@ int main()
     {
         std::cin>>v2[i];
     }
+
+
+    std::map<int,int> mp;
+
+    int i{};
+    int j{};
+
+    while(i<n1)
+    {
+        if(mp.count(v1[i])==0)
+        {
+            mp[v1[i]]=1;
+        }
+        i++;
+    }
+
+    while(j<n2)
+    {
+        if(mp.count(v2[j])==0)
+        {
+            mp[v2[j]]=1;
+        }
+        j++;
+    }
+
+    int n{mp.size()};
+
+    std::vector<int> v(n);
+
+    int p{};
+
+    for(auto t =mp.begin();t!=mp.end();t++)
+    {
+        v[p]=t->first;
+        p++;
+    }
+
+    for(int k{};k<n;k++)
+    {
+        std::cout<<v[k]<<" ";
+    }
+    
+    
+
 }
