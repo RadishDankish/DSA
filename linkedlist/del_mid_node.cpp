@@ -81,7 +81,36 @@ void len(node* &head,int &temp)
 
 }
 
+void delmid(node* &head)
+{
+    if(head==NULL)
+    {
+        return;
+    }
+    else
+    {
+        node* slow = head;
+        node* fast = head;
 
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            fast=fast->next->next;
+            if(fast==NULL || fast->next==NULL)
+            {
+                break;
+            }
+            else
+            {
+                slow=slow->next;
+            }
+        }
+
+        node* temp2 = slow;
+        temp2=temp2->next;
+        slow->next=slow->next->next;
+        temp2=NULL;
+    }
+}
 
 
 void print(node* &head)
@@ -117,5 +146,9 @@ int main()
     {
         insert(head,arr[i]);
     }
+
+    delmid(head);
+
+    print(head);
 
 }

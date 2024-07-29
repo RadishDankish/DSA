@@ -3,56 +3,43 @@
 int main()
 {
     std::string a;
+    std::cin>>a;
 
-    std::getline(std::cin,a);
+    std::string temp="";
 
-    int left{};
-    int right{};
+    int open{};
+    int close{};
 
-    int len{a.length()};
+    int k{};
+    while(k<a.size())
+    {
+        if(open-1==close && a[k]==')')
+        {
+            open=0;
+            close=0;
+        }
+        else if(open==0)
+        {
+            open++;
+        }
+        else
+        {
+            if(a[k]=='(')
+            {
+                temp+=a[k];
+                open++;
+            }
+            else if(a[k]==')' && open>1)
+            {
+                temp+=a[k];
+                close++;
+            }
+        }
+        k++;
+    }
 
-    std::vector<int> arr;
+    std::cout<<temp;
+
     
-    int i{};
-    while(i<len)
-    {
-        if(left==right)
-        {
-            arr.push_back(i);
-        }
-
-        if(a[i]=='(')
-        {
-            left++;
-        }
-        else if(a[i]==')')
-        {
-            right++;
-        }
-        i++;
-
-    }
-
-    if(left==right)
-    {
-        arr.push_back(i);
-    }
-
-    int len2{arr.size()};
-    int j{};
-
-    std::string new_str="";
-
-    for(int i{};i<len;i++)
-    {
-        if(arr[i])
-        {
-            
-        }
-    }
-
-    std::cout<<a;
-    
-
 
 }

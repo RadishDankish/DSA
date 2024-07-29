@@ -61,25 +61,6 @@ void del(node* &head,int val)
     }
 } 
 
-void len(node* &head,int &temp)
-{
-    if(head==NULL)
-    {
-        temp=0;
-        return;
-    }
-    else
-    {
-        node* iter = head;
-
-        while(iter!=NULL)
-        {
-            iter=iter->next;
-            temp++;
-        }
-    }
-
-}
 
 
 
@@ -95,6 +76,38 @@ void print(node* &head)
     }
 }
 
+
+void segregate(node* &head)
+{
+    if(head==NULL)
+    {
+        return;
+    }
+    else
+    {
+        node* odd_head=head->next;
+        node* even = head;
+        node* odd = head->next;
+
+        while(even!=NULL && odd!=NULL && odd->next!=NULL && even->next!=NULL)
+        {
+            even->next=even->next->next;
+            odd->next=odd->next->next;
+            even=even->next;
+            odd=odd->next;
+        }
+
+        if(odd==NULL)
+        {
+            even->next=odd_head;
+        }
+        else if(odd->next==NULL)
+        {
+            odd->next=odd_head;
+        }
+
+    }
+}
 
 
 int main()
@@ -117,5 +130,9 @@ int main()
     {
         insert(head,arr[i]);
     }
+
+    segregate(head);
+
+    print(head);
 
 }

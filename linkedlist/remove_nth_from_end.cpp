@@ -39,50 +39,6 @@ void insert(node* &head,int val)
     }
 }
 
-void del(node* &head,int val)
-{
-    if(head==NULL)
-    {
-        return;
-    }
-    else
-    {
-        node* temp = head;
-        while(temp->next->data!=val)
-        {
-            temp=temp->next;
-        }
-
-        node* temp2 = temp;
-
-        temp2=temp2->next;
-        temp->next=temp2->next;
-        temp2->next=NULL;
-    }
-} 
-
-void len(node* &head,int &temp)
-{
-    if(head==NULL)
-    {
-        temp=0;
-        return;
-    }
-    else
-    {
-        node* iter = head;
-
-        while(iter!=NULL)
-        {
-            iter=iter->next;
-            temp++;
-        }
-    }
-
-}
-
-
-
 
 void print(node* &head)
 {
@@ -95,10 +51,44 @@ void print(node* &head)
     }
 }
 
+void remove(node* &head,int n)
+{
+    if(head == NULL)
+    {
+        return;
+    }
+    else
+    {
+            
+        node* slow = head;
+        node* fast  =head;
+
+        for(int i{};i<n;i++)
+        {
+            fast=fast->next;
+        }
+
+        while(fast->next!=NULL)
+        {
+            fast=fast->next;
+            slow=slow->next;
+        }
+
+        node* temp2=slow;
+        temp2=temp2->next;
+        slow->next=slow->next->next;
+        temp2->next=NULL;
+
+
+
+    }
+}
 
 
 int main()
 {
+    int p{};
+    std::cin>>p;
 
     int n{};
     std::cin>>n;
@@ -118,4 +108,7 @@ int main()
         insert(head,arr[i]);
     }
 
+    remove(head,p);
+
+    print(head);
 }
